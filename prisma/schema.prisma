@@ -10,7 +10,7 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Account {
+model Contact {
   id     String @unique @default(cuid())
   name   String
   number String
@@ -27,7 +27,38 @@ model User {
   image         String?
   createdAt     DateTime? @default(now()) @map(name: "created_at")
   updatedAt     DateTime? @updatedAt @map(name: "updated_at")
-  accounts      Account[]
+  contacts      Contact[]
 
   @@map(name: "users")
+}
+
+model Account {
+  id                 Int       @id @default(autoincrement())
+  compundId          String    @unique @map(name: "compund_id")
+  userId             Int       @map(name: "user_id")
+  providerType       String    @map(name: "provider_type")
+  providerId         String    @map(name: "provider_id")
+  providerAccountId  String    @map(name: "provider_account_id")
+  refreshToken       String?   @map(name: "refresh_token")
+  accessToken        String?   @map(name: "access_token")
+  accessTokenExpires DateTime? @map(name: "access_token_expires")
+  createdAt          DateTime? @default(now()) @map(name: "created_at")
+  updatedAt          DateTime? @default(now()) @map(name: "updated_at")
+
+  @@index([providerAccountId], name: "providerAccountId")
+  @@index([providerId], name: "providerId")
+  @@index([userId], name: "userId")
+  @@map(name: "accounts")
+}
+
+model Session {
+  id           Int       @id @default(autoincrement())
+  userId       Int       @map(name: "user_id")
+  expires      DateTime
+  sessionToken String    @unique @map(name: "session_token")
+  accessToken  String    @unique @map(name: "access_token")
+  createdAt    DateTime? @default(now()) @map(name: "created_at")
+  updatedAt    DateTime? @default(now()) @map(name: "updated_at")
+
+  @@map(name: "sessions")
 }
