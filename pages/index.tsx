@@ -8,35 +8,55 @@ export default function Home({contacts}) {
   const [session,loading] = useSession();
   if(!session){
     return(
-      <div className="prose prose-lg container mx-auto my-20">
-        Currently Not Signed-In< br/>
-        <button className="rounded-md bg-green-500 py-2 px-3 text-white hover:bg-blue-600" onClick={()=>signIn()}>Sign In</button>
+      <div className="prose prose-lg container mx-auto my-20 grid justify-items-stretch">
+        <p className="justify-self-center">Currently Not Signed-In </p>< br/>
+        <button className="rounded-md bg-green-500 py-2 px-3 text-white hover:bg-blue-600 justify-self-center" onClick={()=>signIn()}>Sign In</button>
       </div>
     );
   }
   return (
-    <div>
+    <div className="grid justify-items-stretch">
       <Head>
         <title>Account Record App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <img alt="profile" src={session.user.image} className="w-20 h-20 rounded-full"/>
-      <button className="rounded-md bg-red-500 py-2 px-3 text-white hover:bg-red-600" onClick={()=>signOut()}>Sign Out</button>
+      <img alt="profile" src={session.user.image} className="w-20 h-30 rounded-full justify-self-center"/>
+      <br/>
+      <Link href="/create">
+        <a className="rounded-md bg-green-500 py-1 px-10 text-white hover:bg-green-600 justify-self-center">
+          + Add / Create a new contact info
+        </a>
+        </Link> 
+        <br/>
 
-    <h1 className="text-2xl text-red-500">Account Record</h1>
-      <ul>
-        {contacts.length === 0 ?(
-          <p>You don't have any acoount and contacts</p>
+    <h1 className="text-2xl text-blue-500 justify-self-center">Account Record</h1>
+    <br/>
+      <ol className="justify-self-center">
+        {contacts.length === 0 ? (
+          <p className="text-2xl text-red-500">You don't have any account and contacts</p>
         ) : (
-          contacts.map((contact)=>{
-            <li key={contact.id}>
-              <p>Name: {contact.name}</p>
-              <p>Number: {contact.number}</p>
+          // <div>{contacts.map((yolo)=>console.log("errorChecking",yolo.name))
+          
+          // }</div>
+          // <div>{contacts.map((yolo)=>yolo.name)}</div>
+          contacts.map((yolo)=>{
+            return (<li className="" key={yolo.id}>              
+              <p className="text-2xl text-yellow-500 bg-gradient-to-r from-yellow-100 rounded-md">Full-Name: {yolo.name}</p>
+              <p className="text-2xl text-purple-500 bg-gradient-to-r from-purple-100 rounded-md ">Phone-Number: {yolo.number}</p>
+              <br/>
             </li>
+            )
+            {console.log("ghanta",yolo)}
           })
         )
       }
-      </ul>
+      </ol>
+      <br/>
+      <br/>
+      
+
+      <button className="rounded-md bg-red-500 py-2 px-3 text-white hover:bg-red-700 justify-self-center" onClick={()=>signOut()}>Sign Out</button>
+
     </div>
   )
 }

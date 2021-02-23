@@ -34,7 +34,7 @@ model User {
 
 model Account {
   id                 Int       @id @default(autoincrement())
-  compundId          String    @unique @map(name: "compund_id")
+  compoundId         String    @unique @map(name: "compound_id")
   userId             Int       @map(name: "user_id")
   providerType       String    @map(name: "provider_type")
   providerId         String    @map(name: "provider_id")
