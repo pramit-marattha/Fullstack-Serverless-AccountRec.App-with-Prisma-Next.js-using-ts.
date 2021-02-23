@@ -1,3 +1,20 @@
+# Fullstack Serverless AccountRec.App with Prisma Next.js using TypeScript.
+
+## Login/authentication Page
+
+![image](https://user-images.githubusercontent.com/37651620/108852051-3b829c80-760d-11eb-8c1c-a40c765df753.png)
+![image](https://user-images.githubusercontent.com/37651620/108852111-4806f500-760d-11eb-9ca8-fe53b4f5a9ec.png)
+
+## Home Page
+
+![image](https://user-images.githubusercontent.com/37651620/108852485-c5cb0080-760d-11eb-81eb-1959ddb68904.png)
+
+## Create and save account info page
+
+<p align="center">
+<img src="https://user-images.githubusercontent.com/37651620/108852553-dd09ee00-760d-11eb-8022-43dd66e60340.png" />
+</p>
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
