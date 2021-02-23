@@ -19,3 +19,5 @@ const authHandler: NextApiHandler = (req,res)=> NextAuth(req,res,options)
 
 export default authHandler;
 
+
+
