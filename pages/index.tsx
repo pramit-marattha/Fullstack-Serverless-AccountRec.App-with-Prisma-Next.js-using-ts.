@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import {useSession, signIn,signOut,getSession} from "next-auth/client";
 import prisma from '../lib/prisma';
+import Link from "next/link";
+
 
 export default function Home({contacts}) {
   const [session,loading] = useSession();
@@ -18,12 +20,28 @@ export default function Home({contacts}) {
         <title>Account Record App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-    <h1 className="text-6xl text-red-500">Account Record</h1>
+      <img alt="profile" src={session.user.image} className="w-20 h-20 rounded-full"/>
+      <button className="rounded-md bg-red-500 py-2 px-3 text-white hover:bg-red-600" onClick={()=>signOut()}>Sign Out</button>
+
+    <h1 className="text-2xl text-red-500">Account Record</h1>
+      <ul>
+        {contacts.length === 0 ?(
+          <p>You don't have any acoount and contacts</p>
+        ) : (
+          contacts.map((contact)=>{
+            <li key={contact.id}>
+              <p>Name: {contact.name}</p>
+              <p>Number: {contact.number}</p>
+            </li>
+          })
+        )
+      }
+      </ul>
     </div>
   )
 }
 
-export const getServerSideprops = async ({req,res})=>{
+export const  getServerSideProps = async ({req,res})=>{
   // const getserverProps = cost inport(async)
   const session = await getSession({req});
   if (!session){
