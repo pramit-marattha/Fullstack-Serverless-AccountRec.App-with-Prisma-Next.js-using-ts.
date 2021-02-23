@@ -8,12 +8,15 @@ export default function Home({contacts}) {
   const [session,loading] = useSession();
   if(!session){
     return(
-      <div className="prose prose-lg container mx-auto my-20 grid justify-items-stretch">
-        <p className="justify-self-center">Currently Not Signed-In </p>< br/>
-        <button className="rounded-md bg-green-500 py-2 px-3 text-white hover:bg-blue-600 justify-self-center" onClick={()=>signIn()}>Sign In</button>
+      <div className="prose prose-lg container mx-auto my-0 grid justify-items-stretch">
+      <img alt="profile" src="https://github.githubassets.com/images/modules/site/social-cards/github-social.png" className="h-96 rounded-full justify-self-center"/>
+      <p className="justify-self-center text-2xl text-purple-500">SignIn with github</p>< br/>
+        <button className="rounded-md bg-green-500 py-2 px-9 text-white hover:bg-blue-600 justify-self-center" onClick={()=>signIn()}><img alt="profile" src="https://techcrunch.com/wp-content/uploads/2010/07/github-logo.png" className="h-10 rounded-full justify-self-center"/>SignIn</button>
       </div>
     );
   }
+  // error checking
+
   return (
     <div className="grid justify-items-stretch">
       <Head>
